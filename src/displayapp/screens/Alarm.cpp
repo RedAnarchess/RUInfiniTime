@@ -57,7 +57,7 @@ Alarm::Alarm(Controllers::AlarmController& alarmController,
 
     lblampm = lv_label_create(lv_scr_act(), nullptr);
     lv_obj_set_style_local_text_font(lblampm, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &jetbrains_mono_bold_20);
-    lv_label_set_text_static(lblampm, "AM");
+    lv_label_set_text_static(lblampm, "ДП");
     lv_label_set_align(lblampm, LV_LABEL_ALIGN_CENTER);
     lv_obj_align(lblampm, lv_scr_act(), LV_ALIGN_CENTER, 0, 30);
   }
@@ -192,9 +192,9 @@ void Alarm::OnValueChanged() {
 void Alarm::UpdateAlarmTime() {
   if (lblampm != nullptr) {
     if (hourCounter.GetValue() >= 12) {
-      lv_label_set_text_static(lblampm, "PM");
+      lv_label_set_text_static(lblampm, "ПП");
     } else {
-      lv_label_set_text_static(lblampm, "AM");
+      lv_label_set_text_static(lblampm, "ДП");
     }
   }
   alarmController.SetAlarmTime(hourCounter.GetValue(), minuteCounter.GetValue());
@@ -256,13 +256,13 @@ void Alarm::ShowInfo() {
     auto secToAlarm = timeToAlarm % 60;
 
     lv_label_set_text_fmt(txtMessage,
-                          "Time to\nalarm:\n%2lu Days\n%2lu Hours\n%2lu Minutes\n%2lu Seconds",
+                          "Время до\nбудильника:\n%2lu Дни\n%2lu Часы\n%2lu Минуты\n%2lu Секунды",
                           daysToAlarm,
                           hrsToAlarm,
                           minToAlarm,
                           secToAlarm);
   } else {
-    lv_label_set_text_static(txtMessage, "Alarm\nis not\nset.");
+    lv_label_set_text_static(txtMessage, "Будильник\nне\nустановлен.");
   }
 }
 
@@ -276,13 +276,13 @@ void Alarm::SetRecurButtonState() {
   using Pinetime::Controllers::AlarmController;
   switch (alarmController.Recurrence()) {
     case AlarmController::RecurType::None:
-      lv_label_set_text_static(txtRecur, "ONCE");
+      lv_label_set_text_static(txtRecur, "ЕДИНОЖДЫ");
       break;
     case AlarmController::RecurType::Daily:
-      lv_label_set_text_static(txtRecur, "DAILY");
+      lv_label_set_text_static(txtRecur, "ЕЖЕДНЕВНО");
       break;
     case AlarmController::RecurType::Weekdays:
-      lv_label_set_text_static(txtRecur, "MON-FRI");
+      lv_label_set_text_static(txtRecur, "БУДНИ");
   }
 }
 

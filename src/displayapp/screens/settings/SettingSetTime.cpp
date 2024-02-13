@@ -30,7 +30,7 @@ SettingSetTime::SettingSetTime(Pinetime::Controllers::DateTime& dateTimeControll
   : dateTimeController {dateTimeController}, settingsController {settingsController}, settingSetDateTime {settingSetDateTime} {
 
   lv_obj_t* title = lv_label_create(lv_scr_act(), nullptr);
-  lv_label_set_text_static(title, "Set current time");
+  lv_label_set_text_static(title, "Установите текущее время");
   lv_label_set_align(title, LV_LABEL_ALIGN_CENTER);
   lv_obj_align(title, lv_scr_act(), LV_ALIGN_IN_TOP_MID, 15, 15);
 
@@ -68,7 +68,7 @@ SettingSetTime::SettingSetTime(Pinetime::Controllers::DateTime& dateTimeControll
   lv_obj_set_size(btnSetTime, 120, 50);
   lv_obj_align(btnSetTime, lv_scr_act(), LV_ALIGN_IN_BOTTOM_MID, 0, 0);
   lblSetTime = lv_label_create(btnSetTime, nullptr);
-  lv_label_set_text_static(lblSetTime, "Set");
+  lv_label_set_text_static(lblSetTime, "Установить");
   lv_obj_set_style_local_bg_color(btnSetTime, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, Colors::bgAlt);
   lv_obj_set_style_local_text_color(lblSetTime, LV_LABEL_PART_MAIN, LV_STATE_DISABLED, LV_COLOR_GRAY);
   lv_obj_set_event_cb(btnSetTime, SetTimeEventHandler);
@@ -83,9 +83,9 @@ SettingSetTime::~SettingSetTime() {
 void SettingSetTime::UpdateScreen() {
   if (settingsController.GetClockType() == Controllers::Settings::ClockType::H12) {
     if (hourCounter.GetValue() >= 12) {
-      lv_label_set_text_static(lblampm, "PM");
+      lv_label_set_text_static(lblampm, "ПП");
     } else {
-      lv_label_set_text_static(lblampm, "AM");
+      lv_label_set_text_static(lblampm, "ДП");
     }
   }
 }
@@ -93,7 +93,7 @@ void SettingSetTime::UpdateScreen() {
 void SettingSetTime::SetTime() {
   const int hoursValue = hourCounter.GetValue();
   const int minutesValue = minuteCounter.GetValue();
-  NRF_LOG_INFO("Setting time (manually) to %02d:%02d:00", hoursValue, minutesValue);
+  NRF_LOG_INFO("Установка времени (вручную) на %02d:%02d:00", hoursValue, minutesValue);
   dateTimeController.SetTime(dateTimeController.Year(),
                              static_cast<uint8_t>(dateTimeController.Month()),
                              dateTimeController.Day(),

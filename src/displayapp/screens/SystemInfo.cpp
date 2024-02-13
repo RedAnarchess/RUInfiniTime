@@ -80,12 +80,12 @@ std::unique_ptr<Screen> SystemInfo::CreateScreen1() {
   lv_label_set_recolor(label, true);
   lv_label_set_text_fmt(label,
                         "#FFFF00 InfiniTime#\n\n"
-                        "#808080 Version# %ld.%ld.%ld\n"
+                        "#808080 Версия# %ld.%ld.%ld\n"
                         "#808080 Short Ref# %s\n"
-                        "#808080 Build date#\n"
+                        "#808080 Дата сборки#\n"
                         "%s\n"
                         "%s\n\n"
-                        "#808080 Bootloader# %s",
+                        "#808080 Загрузчик# %s",
                         Version::Major(),
                         Version::Minor(),
                         Version::Patch(),
